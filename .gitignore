@@ -1,0 +1,50 @@
+# ==================================================================
+# Unity gerados automaticamente (NÃO COMITAR)
+# ==================================================================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Pacotes e dependências
+/[Pp]ackages/packages-lock.json
+
+# Configurações do usuário local (NÃO compartilháveis)
+UserSettings/
+.vscode/
+.idea/
+
+# Metadados do Unity (IMPORTANTE: NÃO IGNORAR .meta)
+!*.meta
+
+# Arquivos de cache e builds
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.db
+*.buildreport
+*.bak
+*.log
+*.bak~
+
+# Unity Cloud Build & Collab
+/[Aa]ssets/Collab/
+[Uu]ser[Ss]ettings/
+
+# Formatos de vídeo e grandes binários (caso não sejam parte do jogo)
+*.mp4
+*.mov
+
+# Arquivos do Windows/macOS que não devem ser commitados
+*.DS_Store
+Thumbs.db
+ehthumbs.db
