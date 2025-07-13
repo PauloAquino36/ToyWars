@@ -4,6 +4,8 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public string weaponName;       // Nome da arma
+
+    public int weaponId;        // ID da arma
     public float damage;            // Dano por disparo
     public float range;             // Alcance do disparo
     public float cooldown;          // Intervalo entre disparos

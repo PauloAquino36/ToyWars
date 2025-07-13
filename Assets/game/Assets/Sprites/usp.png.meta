@@ -26,30 +26,6 @@ TextureImporter:
   - first:
       213: 6373917828168222513
     second: usp_7
-  - first:
-      213: 16113287083410965
-    second: usp_8
-  - first:
-      213: 6750197017912656116
-    second: usp_9
-  - first:
-      213: -2574047930893633665
-    second: usp_10
-  - first:
-      213: 3296759884267672618
-    second: usp_11
-  - first:
-      213: -6789336304913516865
-    second: usp_12
-  - first:
-      213: -303305516376915533
-    second: usp_13
-  - first:
-      213: 3332923993453290268
-    second: usp_14
-  - first:
-      213: -8161980493523558292
-    second: usp_15
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -161,10 +137,10 @@ TextureImporter:
       name: usp_0
       rect:
         serializedVersion: 2
-        x: 224
-        y: 600
-        width: 47
-        height: 66
+        x: 267
+        y: 139
+        width: 62
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +159,10 @@ TextureImporter:
       name: usp_1
       rect:
         serializedVersion: 2
-        x: 735
-        y: 599
-        width: 48
-        height: 67
+        x: 776
+        y: 140
+        width: 62
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +181,10 @@ TextureImporter:
       name: usp_2
       rect:
         serializedVersion: 2
-        x: 1247
-        y: 599
-        width: 48
-        height: 66
+        x: 1286
+        y: 140
+        width: 61
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +203,10 @@ TextureImporter:
       name: usp_3
       rect:
         serializedVersion: 2
-        x: 1759
-        y: 598
-        width: 47
-        height: 67
+        x: 1796
+        y: 140
+        width: 62
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +225,10 @@ TextureImporter:
       name: usp_4
       rect:
         serializedVersion: 2
-        x: 2271
-        y: 598
-        width: 47
-        height: 67
+        x: 2308
+        y: 140
+        width: 61
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +247,10 @@ TextureImporter:
       name: usp_5
       rect:
         serializedVersion: 2
-        x: 2783
-        y: 599
-        width: 48
-        height: 66
+        x: 2822
+        y: 140
+        width: 61
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +269,10 @@ TextureImporter:
       name: usp_6
       rect:
         serializedVersion: 2
-        x: 3295
-        y: 599
-        width: 48
-        height: 67
+        x: 3336
+        y: 141
+        width: 62
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,182 +291,6 @@ TextureImporter:
       name: usp_7
       rect:
         serializedVersion: 2
-        x: 3808
-        y: 600
-        width: 47
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1370f778e74b47850800000000000000
-      internalID: 6373917828168222513
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_8
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 139
-        width: 62
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51645c003fe393000800000000000000
-      internalID: 16113287083410965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_9
-      rect:
-        serializedVersion: 2
-        x: 776
-        y: 140
-        width: 62
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4f0c5987c648dad50800000000000000
-      internalID: 6750197017912656116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_10
-      rect:
-        serializedVersion: 2
-        x: 1286
-        y: 140
-        width: 61
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7771447b05274cd0800000000000000
-      internalID: -2574047930893633665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_11
-      rect:
-        serializedVersion: 2
-        x: 1796
-        y: 140
-        width: 62
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a245883d5a170cd20800000000000000
-      internalID: 3296759884267672618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_12
-      rect:
-        serializedVersion: 2
-        x: 2308
-        y: 140
-        width: 61
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb677f42a9e67c1a0800000000000000
-      internalID: -6789336304913516865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_13
-      rect:
-        serializedVersion: 2
-        x: 2822
-        y: 140
-        width: 61
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b100f56d317acbf0800000000000000
-      internalID: -303305516376915533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_14
-      rect:
-        serializedVersion: 2
-        x: 3336
-        y: 141
-        width: 62
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c13e825a6bce04e20800000000000000
-      internalID: 3332923993453290268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: usp_15
-      rect:
-        serializedVersion: 2
         x: 3851
         y: 141
         width: 62
@@ -503,8 +303,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c606cd33cf1dabe80800000000000000
-      internalID: -8161980493523558292
+      spriteID: 1370f778e74b47850800000000000000
+      internalID: 6373917828168222513
       vertices: []
       indices: 
       edges: []
@@ -525,20 +325,12 @@ TextureImporter:
     nameFileIdTable:
       usp_0: 2815472191068209715
       usp_1: 117222280926224856
-      usp_10: -2574047930893633665
-      usp_11: 3296759884267672618
-      usp_12: -6789336304913516865
-      usp_13: -303305516376915533
-      usp_14: 3332923993453290268
-      usp_15: -8161980493523558292
       usp_2: -7255225581798281
       usp_3: -6758466170581986986
       usp_4: -7462957185760047650
       usp_5: -5414476847249363146
       usp_6: -2710038430899204937
       usp_7: 6373917828168222513
-      usp_8: 16113287083410965
-      usp_9: 6750197017912656116
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

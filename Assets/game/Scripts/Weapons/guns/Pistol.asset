@@ -19,3 +19,5 @@ MonoBehaviour:
   capacity: 12
   reloadTime: 1.2
   fireType: 0
+  weaponSprite: {fileID: 2815472191068209715, guid: 5ca95867ae7de7c41b3f758209f7b4eb, type: 3}
+  fireSound: {fileID: 0}
