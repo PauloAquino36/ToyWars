@@ -22,7 +22,7 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKey(KeyCode.Space))
         {
             TryShoot();
         }
