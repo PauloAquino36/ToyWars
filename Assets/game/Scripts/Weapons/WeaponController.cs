@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -7,9 +8,8 @@ public class WeaponController : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-    [Header("Visual")]
-    public Transform weaponHolder;  // O Empty
-    public SpriteRenderer weaponSpriteRenderer; // O SpriteRenderer da arma
+    [Header("Visuals")]
+    public SpriteRenderer weaponSpriteRenderer;
 
     private int currentAmmo;
     private float lastFireTime;
@@ -17,8 +17,6 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         currentAmmo = weaponData.capacity;
-
-        // Aplica o sprite da arma equipada
         weaponSpriteRenderer.sprite = weaponData.weaponSprite;
     }
 
@@ -37,12 +35,7 @@ public class WeaponController : MonoBehaviour
 
     void TryShoot()
     {
-        if (Time.time - lastFireTime < weaponData.cooldown)
-        {
-            Debug.Log("Aguardando cooldown...");
-            return;
-        }
-
+        if (Time.time - lastFireTime < weaponData.cooldown) return;
         if (currentAmmo <= 0)
         {
             Debug.Log("Sem munição! Recarregue.");
@@ -56,8 +49,27 @@ public class WeaponController : MonoBehaviour
 
     void Fire()
     {
+        // Dispara a bala
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Debug.Log($"Disparou {weaponData.weaponName}!");
+
+        // Inicia o efeito de troca de sprite
+        StartCoroutine(ShootSpriteSwap());
+    }
+
+    // Corrotina para trocar o sprite da arma
+    IEnumerator ShootSpriteSwap()
+    {
+        // 1. Troca para o sprite de "tiro", se ele existir
+        if (weaponData.shootingSprite != null)
+        {
+            weaponSpriteRenderer.sprite = weaponData.shootingSprite;
+        }
+
+        // 2. Espera um curto período de tempo
+        yield return new WaitForSeconds(0.08f); // Pode ajustar este tempo
+
+        // 3. Volta para o sprite normal (idle)
+        weaponSpriteRenderer.sprite = weaponData.weaponSprite;
     }
 
     void Reload()

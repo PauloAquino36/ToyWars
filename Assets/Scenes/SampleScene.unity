@@ -570,7 +570,6 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: e20f40a2bf3b52340b39d5eeee06fd82, type: 2}
   firePoint: {fileID: 227898200}
   bulletPrefab: {fileID: 6850325926283278778, guid: 37f865d3e3864e34b8e6c1fffa46d5b9, type: 3}
-  weaponHolder: {fileID: 578329690}
   weaponSpriteRenderer: {fileID: 972533334}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
