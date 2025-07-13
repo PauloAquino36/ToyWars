@@ -14,12 +14,9 @@ public class WeaponPickup : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = weaponData.weaponSprite;
         }
     }
-
-    // Este método é chamado pelo jogador para equipar a arma
-    public void Equip(WeaponController playerWeaponController)
-    {
-        playerWeaponController.EquipNewWeapon(weaponData);
-        // A arma no chão desaparece depois de ser pega
-        Destroy(gameObject);
-    }
+    
+    // O método Equip não é mais necessário aqui, pois o PlayerController
+    // pega os dados diretamente do "weaponData".
+    // Você pode remover o método Equip se quiser, ou deixá-lo caso
+    // queira usá-lo para outra coisa no futuro.
 }

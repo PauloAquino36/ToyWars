@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce3ce09d3de71664cb9241b9a5e35fde, type: 3}
-  m_Name: Pistol
+  m_Name: noneGun
   m_EditorClassIdentifier: 
-  weaponName: Pistol
-  damage: 10
-  range: 20
-  cooldown: 0.4
-  capacity: 12
-  reloadTime: 1.2
-  fireType: 1
-  ammoType: 1
-  weaponSprite: {fileID: 2815472191068209715, guid: 5ca95867ae7de7c41b3f758209f7b4eb, type: 3}
-  shootingSprite: {fileID: 117222280926224856, guid: 5ca95867ae7de7c41b3f758209f7b4eb, type: 3}
+  weaponName: none
+  damage: 0
+  range: 0
+  cooldown: 0
+  capacity: 0
+  reloadTime: 0
+  fireType: 0
+  weaponSprite: {fileID: 0}
+  shootingSprite: {fileID: 0}
   fireSound: {fileID: 0}
