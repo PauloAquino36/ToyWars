@@ -16,10 +16,11 @@ MonoBehaviour:
   damage: 10
   range: 20
   cooldown: 0.4
+  spreadAngle: 1
   capacity: 12
   reloadTime: 1.2
   fireType: 1
   ammoType: 1
   weaponSprite: {fileID: 2815472191068209715, guid: 5ca95867ae7de7c41b3f758209f7b4eb, type: 3}
   shootingSprite: {fileID: 117222280926224856, guid: 5ca95867ae7de7c41b3f758209f7b4eb, type: 3}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: fc904e1f4189ced40a5ad91d3bf523aa, type: 3}

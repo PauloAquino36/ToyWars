@@ -17,6 +17,9 @@ public class WeaponData : ScriptableObject
     public float damage;
     public float range;
     public float cooldown;
+     [Header("Precision")]
+    [Tooltip("O ângulo máximo de dispersão do tiro. 0 para precisão perfeita.")]
+    public float spreadAngle; // <<< NOVA VARIÁVEL
     public int capacity;
     public float reloadTime;
     public FireType fireType;

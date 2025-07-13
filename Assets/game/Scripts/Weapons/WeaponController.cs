@@ -17,12 +17,15 @@ public class WeaponController : MonoBehaviour
 
     // Referência para o controlador do jogador
     private PlayerController playerController;
+    private AudioSource audioSource;
 
     void Start()
     {
         // Pega a referência do PlayerController no objeto pai
         playerController = GetComponentInParent<PlayerController>();
 
+        // Pega o componente AudioSource para tocar sons
+        audioSource = GetComponent<AudioSource>();
         // Configura a arma inicial
         if (weaponData != null)
         {
@@ -67,19 +70,38 @@ public class WeaponController : MonoBehaviour
 
     void Fire()
     {
-        // Instancia a bala e guarda uma referência a ela
-        GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        // --- LÓGICA DE PRECISÃO ---
+        // 1. Calcula um ângulo de desvio aleatório dentro do cone de dispersão da arma.
+        float currentSpread = Random.Range(-weaponData.spreadAngle / 2, weaponData.spreadAngle / 2);
 
-        // Pega o componente "Bullet" da bala que acabamos de criar
+        // 2. Cria uma rotação que representa esse desvio.
+        Quaternion spreadRotation = Quaternion.Euler(new Vector3(0, 0, currentSpread));
+        
+        // 3. Combina a rotação original do ponto de tiro com a rotação de desvio para obter a direção final.
+        Quaternion finalRotation = firePoint.rotation * spreadRotation;
+        
+        // --- FIM DA LÓGICA DE PRECISÃO ---
+
+        // Instancia a bala usando a rotação final, que agora inclui a imprecisão.
+        GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, finalRotation);
+
+        // Pega o script da bala recém-criada para passar informações.
         Bullet bulletScript = bulletInstance.GetComponent<Bullet>();
 
-        // Passa o dano da arma (do WeaponData) para o script da bala
+        // Passa o dano da arma para a bala.
         if (bulletScript != null)
         {
             bulletScript.damage = (int)weaponData.damage;
         }
+        // --- TOCAR O SOM DO TIRO ---
+        // 1. Verifica se existe um clipe de áudio definido na arma
+        if (weaponData.fireSound != null)
+        {
+            // 2. Toca o som uma vez
+            audioSource.PlayOneShot(weaponData.fireSound);
+        }
 
-        // Inicia o efeito visual de troca de sprite ao atirar
+        // Inicia a corrotina para o efeito visual do tiro.
         StartCoroutine(ShootSpriteSwap());
     }
 
