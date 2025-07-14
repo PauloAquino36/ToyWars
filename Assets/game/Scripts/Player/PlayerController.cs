@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Linq; // Adicione esta linha
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,7 +23,12 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private WeaponController weaponController;
-    private WeaponPickup nearbyWeapon = null; // Guarda a arma que pode ser trocada com 'E'
+    private WeaponPickup nearbyWeapon = null;
+
+    // --- NOVO INVENTÁRIO DE ARMAS ---
+    private List<WeaponData> weaponInventory = new List<WeaponData>();
+    private int currentWeaponIndex = -1;
+    private const int maxWeapons = 2;
 
     // Inventário de Munição
     private Dictionary<AmmoType, int> ammoInventory = new Dictionary<AmmoType, int>();
@@ -32,36 +38,41 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // Pega os componentes necessários
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         weaponController = GetComponentInChildren<WeaponController>();
 
         AtualizarVidaUI();
-
-        // Se o jogador já começa com uma arma, atualiza a UI de munição
-        if (weaponController != null && weaponController.weaponData != null)
-        {
-            weaponController.UpdateAmmoUI();
-        }
+        
+        // Desequipa a arma no início para começar sem nada
+        weaponController.UnequipWeapon();
     }
 
     void Update()
     {
         if (life > 0)
         {
+            // --- INPUTS ---
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
 
-            animator.SetBool("IsMoving", movement.magnitude > 0.1f);
-            HandleSpriteFlipping();
+            // Trocar de arma (ex: com a tecla Q)
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SwitchWeapon();
+            }
+
+            // Pegar/Trocar arma (E)
             if (Input.GetKeyDown(KeyCode.E) && nearbyWeapon != null)
             {
-                weaponController.EquipNewWeapon(nearbyWeapon.weaponData);
-                Destroy(nearbyWeapon.gameObject);
-                nearbyWeapon = null;
+                PickupOrSwapWeapon(nearbyWeapon);
             }
+            
+            // --- LÓGICA DE MOVIMENTO E ANIMAÇÃO ---
+            animator.SetBool("IsMoving", movement.magnitude > 0.1f);
+            HandleSpriteFlipping();
+
             // Exemplo para testar o dano
             if (Input.GetKeyDown(KeyCode.T))
             {
@@ -71,7 +82,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("IsDead", true);
-            rb.linearVelocity = Vector2.zero; // Para o movimento do jogador
+            rb.linearVelocity = Vector2.zero;
             Debug.Log("Jogador Morreu!");
         }
     }
@@ -85,28 +96,26 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 
-    // --- LÓGICA DE DETECÇÃO DE ARMA ---
     private void OnTriggerEnter2D(Collider2D other)
     {
         WeaponPickup pickup = other.GetComponent<WeaponPickup>();
         if (pickup != null)
         {
-            // Verifica se o jogador tem uma arma equipada e se a arma no chão é do mesmo tipo
-            if (weaponController.weaponData != null && pickup.weaponData.name == weaponController.weaponData.name)
+            // Verifica se a arma no chão é uma que o jogador já possui no inventário
+            bool alreadyHasWeapon = weaponInventory.Any(w => w.weaponName == pickup.weaponData.weaponName);
+
+            if (alreadyHasWeapon)
             {
-                // Adiciona a munição da arma do chão à reserva do jogador
                 AddAmmo(pickup.weaponData.ammoType, pickup.weaponData.capacity);
-
-                // Atualiza a UI para refletir a nova quantidade de munição
-                weaponController.UpdateAmmoUI();
-
-                // Destrói a arma do chão
+                if (weaponController.weaponData != null)
+                {
+                   weaponController.UpdateAmmoUI();
+                }
                 Destroy(other.gameObject);
             }
-            // Se for uma arma DIFERENTE, armazena para uma possível troca com 'E'
             else
             {
-                Debug.Log("Pressione 'E' para trocar para " + pickup.weaponData.weaponName);
+                Debug.Log("Pressione 'E' para pegar " + pickup.weaponData.weaponName);
                 nearbyWeapon = pickup;
             }
         }
@@ -114,12 +123,52 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Limpa a referência da arma próxima quando o jogador se afasta
         if (other.GetComponent<WeaponPickup>() == nearbyWeapon)
         {
             nearbyWeapon = null;
         }
     }
+
+    // --- NOVOS MÉTODOS DE ARMA ---
+    void PickupOrSwapWeapon(WeaponPickup weaponToPickup)
+    {
+        // Se ainda não temos 2 armas, apenas adiciona a nova
+        if (weaponInventory.Count < maxWeapons)
+        {
+            weaponInventory.Add(weaponToPickup.weaponData);
+            currentWeaponIndex = weaponInventory.Count - 1; // Equipa a nova arma
+            weaponController.EquipNewWeapon(weaponInventory[currentWeaponIndex]);
+        }
+        // Se o inventário está cheio, troca a arma atual pela nova
+        else
+        {
+            // Opcional: Dropar a arma antiga no chão
+            // ...
+
+            weaponInventory[currentWeaponIndex] = weaponToPickup.weaponData;
+            weaponController.EquipNewWeapon(weaponInventory[currentWeaponIndex]);
+        }
+        
+        Destroy(weaponToPickup.gameObject);
+        nearbyWeapon = null;
+    }
+
+    void SwitchWeapon()
+    {
+        // Só troca de arma se tiver mais de uma
+        if (weaponInventory.Count > 1)
+        {
+            currentWeaponIndex++;
+            if (currentWeaponIndex >= weaponInventory.Count)
+            {
+                currentWeaponIndex = 0;
+            }
+
+            weaponController.EquipNewWeapon(weaponInventory[currentWeaponIndex]);
+            Debug.Log("Trocou para: " + weaponInventory[currentWeaponIndex].weaponName);
+        }
+    }
+
 
     // --- MÉTODOS DE GERENCIAMENTO ---
 
@@ -171,7 +220,7 @@ public class PlayerController : MonoBehaviour
     // --- LÓGICA VISUAL ---
     void HandleSpriteFlipping()
     {
-        if (movement.sqrMagnitude > 0.1f) // Usamos sqrMagnitude para evitar calcular a raiz quadrada
+        if (movement.sqrMagnitude > 0.1f)
         {
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
             weaponHolder.rotation = Quaternion.Euler(0f, 0f, angle);

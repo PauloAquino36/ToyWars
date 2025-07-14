@@ -1,13 +1,11 @@
 using UnityEngine;
 
-// Adicione este enum ANTES da classe WeaponData
 public enum AmmoType
 {
-    None, // Para objetos que não usam munição
+    None,
     Pistol,
     Rifle,
     Shotgun
-    // Adicione mais tipos conforme precisar
 }
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/Weapon Data")]
@@ -17,15 +15,25 @@ public class WeaponData : ScriptableObject
     public float damage;
     public float range;
     public float cooldown;
-     [Header("Precision")]
+    [Header("Precision")]
     [Tooltip("O ângulo máximo de dispersão do tiro. 0 para precisão perfeita.")]
-    public float spreadAngle; // <<< NOVA VARIÁVEL
+    public float spreadAngle;
     public int capacity;
     public float reloadTime;
     public FireType fireType;
 
+    [Header("Burst / Shotgun Settings")]
+    [Tooltip("Número de DISPAROS em uma rajada (Burst).")]
+    public int burstShotCount = 1; // Renomeado para clareza
+
+    [Tooltip("Número de PROJÉTEIS por disparo (para efeito shotgun).")] // <-- NOVA VARIÁVEL
+    public int projectilesPerShot = 1;
+
+    [Tooltip("O atraso entre cada disparo em uma rajada (apenas para Burst).")]
+    public float burstDelay = 0.05f;
+
     [Header("Ammo")]
-    public AmmoType ammoType; // <<-- NOVA VARIÁVEL
+    public AmmoType ammoType;
 
     [Header("Sprites & Effects")]
     public Sprite weaponSprite;
@@ -37,6 +45,6 @@ public class WeaponData : ScriptableObject
         None,
         SemiAutomatic,
         Automatic,
-        Burst
+        Burst // Shotgun foi removido, pois agora é parte do Burst
     }
 }
