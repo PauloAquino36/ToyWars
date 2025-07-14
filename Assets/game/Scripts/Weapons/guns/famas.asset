@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce3ce09d3de71664cb9241b9a5e35fde, type: 3}
-  m_Name: shotgun
+  m_Name: famas
   m_EditorClassIdentifier: 
-  weaponName: shotgun
-  damage: 15
-  range: 10
-  cooldown: 0.8
-  spreadAngle: 15
-  capacity: 5
-  reloadTime: 2.5
+  weaponName: Famas
+  damage: 12
+  range: 30
+  cooldown: 0.1
+  spreadAngle: 3
+  capacity: 30
+  reloadTime: 2.2
   fireType: 3
-  burstShotCount: 1
-  projectilesPerShot: 5
-  burstDelay: 0.05
-  ammoType: 3
-  weaponSprite: {fileID: 4215482582408141507, guid: 82babc769a4c57044bd00087c6749a55, type: 3}
-  shootingSprite: {fileID: 7277531664868500656, guid: 82babc769a4c57044bd00087c6749a55, type: 3}
+  burstShotCount: 3
+  projectilesPerShot: 1
+  burstDelay: 0.1
+  ammoType: 0
+  weaponSprite: {fileID: 130651933882159014, guid: d7005c61739a48e448d0d2b203de41e8, type: 3}
+  shootingSprite: {fileID: 168550201557466598, guid: d7005c61739a48e448d0d2b203de41e8, type: 3}
   fireSound: {fileID: 8300000, guid: fc904e1f4189ced40a5ad91d3bf523aa, type: 3}

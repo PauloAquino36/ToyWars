@@ -20,6 +20,9 @@ MonoBehaviour:
   capacity: 30
   reloadTime: 1.5
   fireType: 2
+  burstShotCount: 1
+  projectilesPerShot: 1
+  burstDelay: 0.05
   ammoType: 1
   weaponSprite: {fileID: 6446061410222754207, guid: a8011cd06ead7f246a09e631f1d46626, type: 3}
   shootingSprite: {fileID: 8672426274089661381, guid: a8011cd06ead7f246a09e631f1d46626, type: 3}
