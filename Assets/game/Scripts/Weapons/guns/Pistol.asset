@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   damage: 10
-  range: 20
+  range: 30
   cooldown: 0.4
   spreadAngle: 1
   capacity: 12

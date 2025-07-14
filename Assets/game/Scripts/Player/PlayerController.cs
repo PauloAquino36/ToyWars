@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         weaponController = GetComponentInChildren<WeaponController>();
 
         AtualizarVidaUI();
-        
+
         // Se o jogador já começa com uma arma, atualiza a UI de munição
         if (weaponController != null && weaponController.weaponData != null)
         {
@@ -49,32 +49,40 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // --- Movimentação ---
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        animator.SetBool("IsMoving", movement.sqrMagnitude > 0);
-        HandleSpriteFlipping();
-
-        // --- Lógica para TROCAR de arma ---
-        // Só funciona se a arma próxima for diferente da atual
-        if (Input.GetKeyDown(KeyCode.E) && nearbyWeapon != null)
+        if (life > 0)
         {
-            weaponController.EquipNewWeapon(nearbyWeapon.weaponData);
-            Destroy(nearbyWeapon.gameObject);
-            nearbyWeapon = null;
+            movement.x = Input.GetAxis("Horizontal");
+            movement.y = Input.GetAxis("Vertical");
+
+            animator.SetBool("IsMoving", movement.magnitude > 0.1f);
+            HandleSpriteFlipping();
+            if (Input.GetKeyDown(KeyCode.E) && nearbyWeapon != null)
+            {
+                weaponController.EquipNewWeapon(nearbyWeapon.weaponData);
+                Destroy(nearbyWeapon.gameObject);
+                nearbyWeapon = null;
+            }
+            // Exemplo para testar o dano
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                TomarDano(10);
+            }
         }
-
-        // Exemplo para testar o dano
-        if (Input.GetKeyDown(KeyCode.T))
+        else
         {
-            TomarDano(10);
+            animator.SetBool("IsDead", true);
+            rb.linearVelocity = Vector2.zero; // Para o movimento do jogador
+            Debug.Log("Jogador Morreu!");
         }
     }
 
     void FixedUpdate()
     {
-        // Aplica o movimento no Rigidbody2D para uma física consistente
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        Vector2 move = movement;
+        if (move.magnitude > 1f)
+            move = move.normalized;
+
+        rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 
     // --- LÓGICA DE DETECÇÃO DE ARMA ---
@@ -88,10 +96,10 @@ public class PlayerController : MonoBehaviour
             {
                 // Adiciona a munição da arma do chão à reserva do jogador
                 AddAmmo(pickup.weaponData.ammoType, pickup.weaponData.capacity);
-                
+
                 // Atualiza a UI para refletir a nova quantidade de munição
                 weaponController.UpdateAmmoUI();
-                
+
                 // Destrói a arma do chão
                 Destroy(other.gameObject);
             }
