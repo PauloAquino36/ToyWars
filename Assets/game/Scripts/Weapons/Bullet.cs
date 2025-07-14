@@ -23,25 +23,28 @@ public class Bullet : MonoBehaviour
     // Método chamado quando a bala colide com outro objeto que tem um Collider2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Tenta pegar o componente PlayerController do objeto em que colidiu
-        PlayerController player = collision.GetComponent<PlayerController>();
-        Console.WriteLine("Colidiu com: " + collision.gameObject.name);
-        // Se o objeto for o jogador (ou qualquer outra coisa com o script PlayerController)
-        if (player != null)
+        if (collision.tag != "Item")
         {
-            // Causa dano no jogador
-            player.TomarDano(damage);
+            // Tenta pegar o componente PlayerController do objeto em que colidiu
+            PlayerController player = collision.GetComponent<PlayerController>();
+            Console.WriteLine("Colidiu com: " + collision.gameObject.name);
+            // Se o objeto for o jogador (ou qualquer outra coisa com o script PlayerController)
+            if (player != null)
+            {
+                // Causa dano no jogador
+                player.TomarDano(damage);
+            }
+
+            // --- IMPORTANTE ---
+            // Adicione aqui a lógica para dano em inimigos no futuro. Exemplo:
+            // EnemyController enemy = collision.GetComponent<EnemyController>();
+            // if (enemy != null)
+            // {
+            //     enemy.TomarDano(damage);
+            // }
+
+            // Destrói a bala ao colidir com QUALQUER COISA que tenha um Collider2D
+            Destroy(gameObject);
         }
-
-        // --- IMPORTANTE ---
-        // Adicione aqui a lógica para dano em inimigos no futuro. Exemplo:
-        // EnemyController enemy = collision.GetComponent<EnemyController>();
-        // if (enemy != null)
-        // {
-        //     enemy.TomarDano(damage);
-        // }
-
-        // Destrói a bala ao colidir com QUALQUER COISA que tenha um Collider2D
-        Destroy(gameObject);
     }
 }
